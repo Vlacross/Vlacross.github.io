@@ -52,6 +52,11 @@ a:focus {
     color: rgba(212, 38, 235, 0.493);
 }
 
+button {
+    width: 100%;
+    height: 100%;
+}
+
 .banner {
     display: flex;
     justify-content: center;
@@ -142,10 +147,9 @@ a:focus {
 }
 
 .search-tray-tab:active {
-    width: 30px;
-    height: 30px;
+    width: 18%;
     border-radius: 50%;
-    transition-duration: 10ms;
+    transition-duration: 100ms;
     
 }
 

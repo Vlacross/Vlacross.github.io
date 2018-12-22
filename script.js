@@ -7,7 +7,7 @@ const API_KEY = {
 };
 
 const searchTabTrayOpen =  '<button id="search-tray-tab" class="search-tray-tab open" tabindex="0"><span class="tab-span">Search</span></button>';
-const searchTabTrayClose = '<button id="search-tray-tab" class="search-tray-tab close"><span class="tab-span" tabindex="0">Close</span></button>';
+const searchTabTrayClose = '<button id="search-tray-tab" class="search-tray-tab close" tabindex="0"><span class="tab-span">Close</span></button>';
 
 
 
@@ -181,7 +181,7 @@ function watchResultsActivity() {
 
 function watchSearchTab() {
 
-  $('main').on('click', '.search-tray-tab', function(e) {
+  $('main').on('click', '#search-tray-tab', function(e) {
     e.preventDefault();
     e.stopPropagation();
     let tabState = $('[class~=\'search-tray-tab\']').attr('class');
@@ -201,6 +201,8 @@ function watchSearchTab() {
 }
 
 function displayResults() {
+  let tab = $('[class~=\'search-tray-tab\']').attr('class')
+  if (!tab.includes('open')) {$('.search-tray-tab').replaceWith(searchTabTrayOpen)}
   setTimeout(function() {
     $('.search-tray-tab').removeClass('hidden');
     $('.search-tray-tab').slideDown(1000); }, 2000);  
