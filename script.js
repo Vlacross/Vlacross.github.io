@@ -1,7 +1,7 @@
 'use strict';
 
 const API_KEY = {
-  GOOGLE_GEOCODE: 'AIzaSyCo1k22pOIQ72MSFK4uSI5r4JVjVI1GZ6s',
+  GEOCOD_GEOCODE: 'db7523f7073d05305ac05373052df7575230f55',
   MTB_PROJECT: '200395855-de7f074b48031edaf79b8beb3902e0b8',
   OPEN_WEATHER: 'a1e69f8910c23992c2e54b530c782490'
 };
@@ -135,8 +135,8 @@ function getTrails (res, dist) {
   if(dist <= 1) {
     let dist = 5;
   }
-  const lat = res.results[0].geometry.location.lat;
-  const long =res.results[0].geometry.location.lng; 
+  const lat = res.results[0].location.lat;
+  const long =res.results[0].location.lng; 
   const trailURL = `https://www.mtbproject.com/data/get-trails?lat=${lat}&lon=${long}&maxDistance=${dist}&key=${API_KEY.MTB_PROJECT}`;
   fetch(trailURL)
     .then(response => checkResponse(response))
@@ -158,7 +158,8 @@ function noTrails(err, inputSearch) {
 
 /*obtain lat & lon for weather and trail uses  */
 function getLat(inputSearch, distanceFrom) {
-  const geoURL = `https://maps.googleapis.com/maps/api/geocode/json?address=${inputSearch}&key=${API_KEY.GOOGLE_GEOCODE}`;
+  const geoURL = `https://api.geocod.io/v1.4/geocode?q=${inputSearch.split(' ').join('+')}&api_key=${API_KEY.GEOCOD_GEOCODE}`;
+
         
   fetch(geoURL)
     .then(response => checkResponse(response))
